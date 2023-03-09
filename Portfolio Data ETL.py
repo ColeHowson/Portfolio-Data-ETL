@@ -18,14 +18,14 @@ pd.options.mode.chained_assignment = None  # default='warn'
 ###############################################################################
 
 #Connection String Varibles 
-username = 'besiuser'
-pwd = 'rad!x-text-gamut-r0sen-truth-b1ack'
-data_base = 'ONYXData' 
-server_name = 'bes-sql'
+username = '*****'
+pwd = '*****'
+data_base = '*****' 
+server_name = '*****'
 
 conn = pymssql.connect(server = server_name, user = username, password = pwd, database = data_base )
 cur = conn.cursor()
-cur.execute('SELECT * FROM [ONYXData].[Customer].[vwDealActualEstimates]')
+cur.execute('SELECT * FROM ******')
 data = cur.fetchall()
 conn.close()
 column_names = [item[0] for item in cur.description]
@@ -283,22 +283,22 @@ final_df = final_df[cols]
 #Pushing Data to SQL Database
 ###############################################################################
 
-username = 'besiuser'
-pwd = 'rad!x-text-gamut-r0sen-truth-b1ack'
-data_base = 'ONYXData' 
-server_name = 'bes-sql'
+username = '*****'
+pwd = '****'
+data_base = '*****' 
+server_name = '*****'
 
 
 #Delete Current Data from Table 
 conn = pymssql.connect(server = server_name, user = username, password = pwd , database = data_base)
 cur = conn.cursor()
-cur.execute("DELETE FROM [ONYXData].[pbi].[PortfolioMonthlyDCQ]")
+cur.execute("DELETE FROM *****")
 conn.commit()
  
 print("Data Cleared")
 
 #Insert New Data Into Table 
-query = "INSERT INTO [ONYXData].[pbi].[PortfolioMonthlyDCQ] values(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+query = "INSERT INTO ***** values(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 sql_data = tuple(map(tuple,final_df.values))
 cur.executemany(query,sql_data)
 conn.commit()
